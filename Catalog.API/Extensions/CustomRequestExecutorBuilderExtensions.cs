@@ -1,4 +1,3 @@
-using eShop.Catalog.Types.Filtering;
 using HotChocolate.Execution.Configuration;
 
 namespace eShop.Catalog.Extensions;
@@ -13,7 +12,8 @@ public static class CustomRequestExecutorBuilderExtensions
                 c.AddDefaults()
                     .BindRuntimeType<string, DefaultStringOperationFilterInputType>();
             })
-            .AddSorting();
+            .AddSorting()
+            .AddPagingArguments();
         return builder;
     }
 }

@@ -1,19 +1,26 @@
-using HotChocolate.Data.Filters;
-using HotChocolate.Data.Sorting;
+using eShop.Catalog.Services;
+using HotChocolate.Pagination;
+using HotChocolate.Types.Pagination;
 
 namespace eShop.Catalog.Types;
 
 [QueryType]
 public static class BrandQueries
 {
-    [UsePaging(DefaultPageSize = 1, MaxPageSize = 10)]
-    [UseProjection]
-    [UseFiltering]
-    public static IQueryable<Brand> GetBrands(CatalogContext context)
-        => context.Brands;
+    [UsePaging]
+    public static async Task<Connection<Brand>> GetBrandsAsync(
+        PagingArguments pagingArguments,
+        BrandService brandService,
+        CancellationToken cancellationToken)
+    {
+        return await brandService
+            .GetBrandsAsync(pagingArguments, cancellationToken)
+            .ToConnectionAsync();
+    }
 
-    [UseFirstOrDefault]
-    [UseProjection]
-    public static IQueryable<Brand> GetBrandById(int id, CatalogContext context)
-        => context.Brands.Where(t => t.Id == id);
+    public static async Task<Brand?> GetBrandById(
+        int id,
+        BrandService brandService,
+        CancellationToken cancellationToken)
+        => await brandService.GetBrandByIdAsync(id, cancellationToken);
 }

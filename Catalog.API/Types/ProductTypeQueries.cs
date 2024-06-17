@@ -1,5 +1,6 @@
-using HotChocolate.Data.Filters;
-using HotChocolate.Data.Sorting;
+using eShop.Catalog.Services;
+using HotChocolate.Pagination;
+using HotChocolate.Types.Pagination;
 
 namespace eShop.Catalog.Types;
 
@@ -7,13 +8,17 @@ namespace eShop.Catalog.Types;
 public static class ProductTypeQueries
 {
     [UsePaging]
-    [UseProjection]
-    [UseFiltering]
-    public static IQueryable<ProductType> GetProductTypes(CatalogContext context)
-        => context.ProductTypes;
+    public static async Task<Connection<ProductType>> GetProductTypesAsync(
+        PagingArguments pagingArguments,
+        ProductTypeService productTypeService,
+        CancellationToken cancellationToken)
+    {
+        return await productTypeService.GetProductTypesAsync(pagingArguments, cancellationToken).ToConnectionAsync();
+    }
 
-    [UseFirstOrDefault]
-    [UseProjection]
-    public static IQueryable<ProductType> GetProductTypeById(int id, CatalogContext context)
-        => context.ProductTypes.Where(t => t.Id == id);
+    public static async Task<ProductType?> GetProductById(
+        int id,
+        ProductTypeService productTypeService,
+        CancellationToken cancellationToken)
+        => await productTypeService.GetProductTypeByIdAsync(id, cancellationToken);
 }

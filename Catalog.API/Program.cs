@@ -1,3 +1,5 @@
+using eShop.Catalog.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
@@ -6,6 +8,11 @@ builder.Services
 
 builder.Services
     .AddMigration<CatalogContext, CatalogContextSeed>();
+
+builder.Services
+    .AddScoped<BrandService>()
+    .AddScoped<ProductTypeService>()
+    .AddScoped<ProductService>();
 
 builder.Services
     .AddGraphQLServer()
