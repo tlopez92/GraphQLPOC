@@ -3,6 +3,7 @@ using HotChocolate.Data.Sorting;
 
 namespace eShop.Catalog.Types;
 
+[QueryType]
 public class Query
 {
     [UsePaging(DefaultPageSize = 1, MaxPageSize = 10)]
