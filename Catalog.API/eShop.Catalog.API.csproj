@@ -14,6 +14,9 @@
     <Using Include="eShop.Catalog.Types" />
     <Using Include="eShop.Catalog.Migrations" />
     <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="eShop.Catalog.Extensions" />
+    <Using Include="eShop.Catalog.Types.Filtering" />
+    <Using Include="eShop.Catalog.Types.Sorting" />
   </ItemGroup>
 
   <ItemGroup>

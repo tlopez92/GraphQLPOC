@@ -1,5 +1,3 @@
-using HotChocolate.Types.Pagination;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
@@ -12,14 +10,9 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .SetPagingOptions(new PagingOptions()
-    {
-        DefaultPageSize = 2,
-        MaxPageSize = 5,
-        AllowBackwardPagination = false,
-        RequirePagingBoundaries = true
-    })
-    .AddProjections();
+    .AddType<ProductFilterInputType>()
+    .AddType<ProductSortInputType>()
+    .AddGraphQLConventions();
 
 var app = builder.Build();
 
