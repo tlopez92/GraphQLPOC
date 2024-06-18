@@ -11,5 +11,6 @@ public static partial class BrandNode
         PagingArguments pagingArguments,
         ProductService productService,
         CancellationToken cancellationToken)
-        => await productService.GetProductsByBrandAsync(brand.Id, pagingArguments, cancellationToken).ToConnectionAsync();
+        => await productService.GetProductsByBrandAsync(brand.Id, pagingArguments, cancellationToken)
+            .ToConnectionAsync();
 }

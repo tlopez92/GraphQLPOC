@@ -1,22 +1,22 @@
 namespace eShop.Catalog.Services;
 
 public sealed class BrandService(
-    CatalogContext context, 
+    CatalogContext context,
     IBrandByIdDataLoader brandById,
     IBrandByNameDataLoader brandByName)
 {
     public async Task<Brand> GetBrandByIdAsync(
-        int id, 
+        int id,
         CancellationToken ct = default)
         => await brandById.LoadAsync(id, ct);
-    
+
     public async Task<Brand> GetBrandByNameAsync(
-        string name, 
+        string name,
         CancellationToken ct = default)
         => await brandByName.LoadAsync(name, ct);
 
     public async Task<Page<Brand>> GetBrandsAsync(
-        PagingArguments args, 
+        PagingArguments args,
         CancellationToken ct = default)
     {
         var page = await context.Brands

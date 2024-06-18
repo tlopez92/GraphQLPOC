@@ -13,12 +13,13 @@ public static class BrandQueries
         CancellationToken cancellationToken)
         => await brandService.GetBrandsAsync(pagingArguments, cancellationToken).ToConnectionAsync();
 
+    [NodeResolver]
     public static async Task<Brand?> GetBrandByIdAsync(
         int id,
         BrandService brandService,
         CancellationToken cancellationToken)
         => await brandService.GetBrandByIdAsync(id, cancellationToken);
-    
+
     public static async Task<Brand?> GetBrandByNameAsync(
         string name,
         BrandService brandService,

@@ -13,6 +13,7 @@ public static class ProductQueries
         CancellationToken cancellationToken)
         => await productService.GetProductsAsync(where?.ToFilter(), pagingArguments, cancellationToken).ToConnectionAsync();
 
+    [NodeResolver]
     public static async Task<Product?> GetProductByIdAsync(
         int id,
         ProductService productService,

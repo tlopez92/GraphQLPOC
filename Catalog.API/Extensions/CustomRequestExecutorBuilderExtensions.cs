@@ -8,6 +8,7 @@ public static class CustomRequestExecutorBuilderExtensions
         this IRequestExecutorBuilder builder)
     {
         builder.AddPagingArguments();
+        builder.AddGlobalObjectIdentification();
         return builder;
     } 
 }
