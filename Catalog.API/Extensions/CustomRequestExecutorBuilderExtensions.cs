@@ -6,14 +6,8 @@ public static class CustomRequestExecutorBuilderExtensions
 {
     public static IRequestExecutorBuilder AddGraphQLConventions(this IRequestExecutorBuilder builder)
     {
-        builder.AddProjections()
-            .AddFiltering(c =>
-            {
-                c.AddDefaults()
-                    .BindRuntimeType<string, DefaultStringOperationFilterInputType>();
-            })
-            .AddSorting()
-            .AddPagingArguments();
+        builder.AddPagingArguments();
+        builder.AddGlobalObjectIdentification();
         return builder;
     }
 }
