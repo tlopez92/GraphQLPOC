@@ -3,7 +3,7 @@ using HotChocolate.Pagination;
 namespace eShop.Catalog.Services;
 
 public sealed class ProductService(
-    CatalogContext context, 
+    CatalogContext context,
     IProductByIdDataLoader productById,
     IProductsByBrandIdDataLoader productsByBrandId,
     IProductsByTypeIdDataLoader productsByTypeId)
