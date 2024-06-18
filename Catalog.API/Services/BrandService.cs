@@ -2,18 +2,36 @@ using HotChocolate.Pagination;
 
 namespace eShop.Catalog.Services;
 
-public sealed class BrandService(CatalogContext context)
+public sealed class BrandService(
+    CatalogContext context,
+    IBrandByIdDataLoader brandById,
+    IBrandByNameDataLoader brandByName)
 {
-    public async Task<Page<Brand>> GetBrandsAsync(PagingArguments pagingArguments, CancellationToken cancellationToken)
-    {
-        return await context.Brands
-            .OrderBy(b => b.Name)
-            .ThenBy(b => b.Id)
-            .ToPageAsync(pagingArguments, cancellationToken);
-    }
+    public async Task<Brand> GetBrandByIdAsync(
+        int id,
+        CancellationToken ct = default)
+        => await brandById.LoadAsync(id, ct);
 
-    public async Task<Brand?> GetBrandByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<Brand> GetBrandByNameAsync(
+        string name,
+        CancellationToken ct = default)
+        => await brandByName.LoadAsync(name, ct);
+
+    public async Task<Page<Brand>> GetBrandsAsync(
+        PagingArguments args,
+        CancellationToken ct = default)
     {
-        return await context.Brands.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+        var page = await context.Brands
+            .AsNoTracking()
+            .OrderBy(t => t.Name)
+            .ThenBy(t => t.Id)
+            .ToPageAsync(args, ct);
+
+        foreach (var brand in page.Items)
+        {
+            brandById.Set(brand.Id, brand);
+        }
+
+        return page;
     }
 }

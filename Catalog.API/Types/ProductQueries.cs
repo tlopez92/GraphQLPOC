@@ -1,4 +1,3 @@
-using eShop.Catalog.Services;
 using HotChocolate.Pagination;
 using HotChocolate.Types.Pagination;
 
@@ -9,14 +8,13 @@ public static class ProductQueries
 {
     [UsePaging]
     public static async Task<Connection<Product>> GetProductsAsync(
+        ProductsFilterInputType? where,
         PagingArguments pagingArguments,
-        ProductService productService,
+        ProductService productService, 
         CancellationToken cancellationToken)
-    {
-        return await productService.GetProductsAsync(pagingArguments, cancellationToken).ToConnectionAsync();
-    }
+        => await productService.GetProductsAsync(where?.ToFilter(), pagingArguments, cancellationToken).ToConnectionAsync();
 
-    public static async Task<Product?> GetProductById(
+    public static async Task<Product?> GetProductByIdAsync(
         int id,
         ProductService productService,
         CancellationToken cancellationToken)

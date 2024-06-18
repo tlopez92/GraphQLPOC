@@ -1,4 +1,4 @@
-using eShop.Catalog.Services;
+using eShop.Catalog.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

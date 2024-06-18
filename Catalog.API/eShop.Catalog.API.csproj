@@ -12,11 +12,12 @@
     <Using Include="eShop.Catalog.Data" />
     <Using Include="eShop.Catalog.Models" />
     <Using Include="eShop.Catalog.Types" />
+    <Using Include="eShop.Catalog.Types.Sorting" />
+    <Using Include="eShop.Catalog.Types.Filtering" />
+    <Using Include="eShop.Catalog.Types.Configuration" />
+    <Using Include="eShop.Catalog.Services" />
     <Using Include="eShop.Catalog.Migrations" />
     <Using Include="Microsoft.EntityFrameworkCore" />
-    <Using Include="eShop.Catalog.Extensions" />
-    <Using Include="eShop.Catalog.Types.Filtering" />
-    <Using Include="eShop.Catalog.Types.Sorting" />
   </ItemGroup>
 
   <ItemGroup>
