@@ -1,9 +1,7 @@
-using eShop.Catalog.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddDbContext<CatalogContext>(
+    .AddDbContextPool<CatalogContext>(
         o => o.UseNpgsql(builder.Configuration.GetConnectionString("CatalogDB")));
 
 builder.Services
@@ -11,8 +9,8 @@ builder.Services
 
 builder.Services
     .AddScoped<BrandService>()
-    .AddScoped<ProductTypeService>()
-    .AddScoped<ProductService>();
+    .AddScoped<ProductService>()
+    .AddScoped<ProductTypeService>();
 
 builder.Services
     .AddGraphQLServer()

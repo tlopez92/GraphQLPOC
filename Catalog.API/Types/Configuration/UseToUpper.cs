@@ -2,8 +2,7 @@ namespace eShop.Catalog.Types.Configuration;
 
 public static class UseToUpperObjectFieldDescriptorExtensions
 {
-    public static IObjectFieldDescriptor UseToUpper(
-        this IObjectFieldDescriptor descriptor)
+    public static IObjectFieldDescriptor UseToUpper(this IObjectFieldDescriptor descriptor)
     {
         return descriptor.Use(next => async context =>
         {

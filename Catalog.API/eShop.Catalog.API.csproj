@@ -18,6 +18,7 @@
     <Using Include="eShop.Catalog.Services" />
     <Using Include="eShop.Catalog.Migrations" />
     <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="HotChocolate.Pagination" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +27,7 @@
     <PackageReference Include="HotChocolate.Data" Version="14.0.0-p.106" />
     <PackageReference Include="HotChocolate.Data.EntityFramework" Version="14.0.0-p.106" />
     <PackageReference Include="HotChocolate.Data.EntityFramework.Helpers" Version="14.0.0-p.106" />
-    <PackageReference Include="HotChocolate.Types.Analyzers" Version="14.0.0-p.106">
+    <PackageReference Include="HotChocolate.Types.Analyzers" Version="14.0.0-p.100">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -36,6 +37,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\.DS_Store" />
   </ItemGroup>
 
 </Project>

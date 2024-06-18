@@ -10,10 +10,10 @@ public class UseToUpperAttribute : ObjectFieldDescriptorAttribute
     {
         Order = order;
     }
-
+    
     protected override void OnConfigure(
-        IDescriptorContext context,
-        IObjectFieldDescriptor descriptor,
+        IDescriptorContext context, 
+        IObjectFieldDescriptor descriptor, 
         MemberInfo member)
         => descriptor.UseToUpper();
 }
